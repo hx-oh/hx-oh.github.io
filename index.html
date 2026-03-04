@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PrimeLand Developments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Questrial", sans-serif;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      background: url('bg_image.png') no-repeat center center/cover;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      padding-top: 200px;
+    }
+
+    /* LOGO */
+    .logo {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      opacity: 0.9;
+      filter: contrast(0%) brightness(2);
+    }
+
+    .hero h1 {
+      font-family: "Questrial", sans-serif;
+      font-size: 5rem;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .btn {
+      padding: 14px 28px;
+      margin: 0 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #c5a47e;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #a88863;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: black;
+    }
+
+    /* SECTION */
+    section {
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background: #f7f7f7;
+      padding: 30px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.6);
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <div class="hero">
+    <!-- CENTERED LOGO -->
+    <div class="logo">
+      <!-- Replace with your own logo file -->
+      <img src="vante_logo.png" alt="Vante logo">
+    </div>
+
+    <div class="hero-content">
+      <h1>Elevating urban futures</h1>
+      <p>
+        <span style="padding-left: 10px; padding-right: 10px">Singapore</span>|
+        <span style="padding-left: 10px; padding-right: 10px">Ho Chi Minh</span>|
+        <span style="padding-left: 10px; padding-right: 10px">Hanoi</span>
+      </p>
+      <!-- <button class="btn btn-primary">View Projects</button>
+      <button class="btn btn-outline">Contact Us</button> -->
+    </div>
+  </div>
+
+
+  <!-- <footer>
+    © 2026 Vante. All Rights Reserved.
+  </footer> -->
+
+</body>
+</html>
