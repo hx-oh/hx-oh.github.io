@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vante</title>
+  <title>PrimeLand Developments</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -30,6 +30,7 @@
       background: url('bg_image.png') no-repeat center center/cover;
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
@@ -51,8 +52,8 @@
     }
 
     /* LOGO */
-    .logo {
-      position: absolute;
+    /* .logo {
+      position: relative;
       top: 30px;
       left: 50%;
       transform: translateX(-50%);
@@ -60,23 +61,23 @@
     }
 
     .logo img {
-      height: 60px;
+      height: 300px;
       width: auto;
       opacity: 0.9;
       filter: contrast(0%) brightness(2);
-    }
+    } */
 
-    .hero h1 {
+    .hero h3 {
       font-family: "Questrial", sans-serif;
-      font-size: 5rem;
+      font-size: 2rem;
       margin-bottom: 20px;
       letter-spacing: 1px;
       font-weight: 500;
+      opacity: 0.8;
     }
 
     .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+      font-size: 1rem;
       font-weight: 300;
       color: rgba(255, 255, 255, 0.8);
     }
@@ -154,36 +155,51 @@
       width: 100%;
     }
 
+    .hero-logo {
+      width: 500px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+      filter: contrast(0%) brightness(2);
+    }
+
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.3rem;
+      .hero-logo {
+        width: 300px;
       }
     }
+
+    @media (max-width: 768px) {
+      .hero h3 {
+        font-size: 1.5rem;
+      }
+      .hero p {
+        font-size: 0.8rem;
+      }
+    }
+
 
   </style>
 </head>
 
 <body>
-  <!-- HERO -->
   <div class="hero">
-    <!-- CENTERED LOGO -->
-    <div class="logo">
-      <!-- Replace with your own logo file -->
-      <img src="vante_logo.png" alt="Vante logo">
-    </div>
 
-    <div class="hero-content">
-      <h1>Elevating urban futures</h1>
-      <p>28 Maxwell Road, #04-06, Maxwell Chambers Suites. Singapore 069120</p>
-      <p>
-        <span style="padding-left: 10px; padding-right: 10px">Singapore</span>|
-        <span style="padding-left: 10px; padding-right: 10px">Ho Chi Minh</span>|
-        <span style="padding-left: 10px; padding-right: 10px">Hanoi</span>
-      </p>
-      <!-- <button class="btn btn-primary">View Projects</button>
-      <button class="btn btn-outline">Contact Us</button> -->
-    </div>
+  <div class="hero-content">
+
+    <!-- Main Logo -->
+    <img src="vante_logo.png" alt="Vante logo" class="hero-logo">
+
+    <h3 class="animated-gradient-text">Elevating urban futures</h3>
+    <p>28 Maxwell Road, #04-06, Maxwell Chambers Suites. Singapore 069120</p>
+    <p>
+      <span style="padding-left: 10px; padding-right: 10px">Singapore</span>|
+      <span style="padding-left: 10px; padding-right: 10px">Ho Chi Minh</span>|
+      <span style="padding-left: 10px; padding-right: 10px">Hanoi</span>
+    </p>
+
   </div>
+
+</div>
 
 
   <!-- <footer>
