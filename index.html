@@ -27,12 +27,13 @@
     /* HERO SECTION */
     .hero {
       height: 100vh;
-      background: url('bg_image.png') no-repeat center center/cover;
+      /* background: url('bg_image.png') no-repeat center center/cover; */
+      background: url('https://images.unsplash.com/photo-1608091123137-5803ac979daf?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      /* justify-content: center; */
       text-align: center;
       color: white;
     }
@@ -41,14 +42,15 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(255, 247, 230, 0.8);
+      /* background: rgba(255, 255, 255, 0.4); */
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       padding: 20px;
-      padding-top: 200px;
+      padding-top: 160px;
     }
 
     /* LOGO */
@@ -73,13 +75,15 @@
       margin-bottom: 20px;
       letter-spacing: 1px;
       font-weight: 500;
-      opacity: 0.8;
+      /* opacity: 1; */
+      color: rgba(5, 66, 11, 1);
     }
 
     .hero p {
       font-size: 1rem;
       font-weight: 300;
-      color: rgba(255, 255, 255, 0.8);
+      /* color: rgba(224, 188, 111, 0.8); */
+      color: rgba(5, 66, 11, 0.8);
     }
 
     .btn {
@@ -158,8 +162,8 @@
     .hero-logo {
       width: 500px;
       margin-bottom: 30px;
-      opacity: 0.9;
-      filter: contrast(0%) brightness(2);
+      opacity: 1;
+      /* filter: contrast(0%) brightness(2); */
     }
 
     @media (max-width: 768px) {
@@ -189,7 +193,7 @@
     <!-- Main Logo -->
     <img src="vante_logo.png" alt="Vante logo" class="hero-logo">
 
-    <h3 class="animated-gradient-text">Elevating urban futures</h3>
+    <h3>Elevating urban futures</h3>
     <p>28 Maxwell Road, #04-06, Maxwell Chambers Suites. Singapore 069120</p>
     <p>
       <span style="padding-left: 10px; padding-right: 10px">Singapore</span>|
