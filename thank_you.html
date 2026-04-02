@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="preload">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corporate Social Responsibility | Vanté</title>
+  <title>Contact Us | Vanté</title>
 
   <link rel="preconnect" href="https://unsplash.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,22 +76,25 @@
       background-attachment: fixed;
     }
 
+    html.preload body {
+      opacity: 0;
+    }
+
+    html.page-ready body {
+      opacity: 1;
+    }
+
     body {
       overflow-y: auto;
       width: 100%;
       max-width: 100vw;
       background: transparent;
       color: #fff;
-      opacity: 0;
+      opacity: 1;
       transition: opacity 0.8s ease;
     }
-
     body.page-loaded {
       opacity: 1;
-    }
-
-    a {
-      color: inherit;
     }
 
     .page-shell {
@@ -99,11 +102,6 @@
       z-index: 5;
       background: transparent;
       padding-bottom: calc(var(--footer-reveal-height) * 0.88);
-    }
-
-    .container {
-      width: min(1240px, calc(100% - 48px));
-      margin: 0 auto;
     }
 
     /* Topbar */
@@ -290,37 +288,37 @@
       transform: rotate(-45deg);
     }
 
-    /* Hero */
-    .csr-hero {
+    /* Contact page hero */
+    .contact-hero {
       position: relative;
-      min-height: 68vh;
+      min-height: 50vh;
       display: flex;
       align-items: flex-end;
-      padding: 160px 0 82px;
+      padding: 150px 0 70px;
       overflow: hidden;
       background:
-        linear-gradient(180deg, rgba(8, 24, 19, 0.1), rgba(8, 24, 19, 0.6)),
-        url('https://res.cloudinary.com/dctowz6ir/image/upload/v1774928395/505087082_1176862987787628_6881603021896008994_n_fqtnc0.jpg') center center / cover no-repeat;
+        linear-gradient(180deg, rgba(8, 24, 19, 0.1), rgba(8, 24, 19, 0.7)),
+        url('https://res.cloudinary.com/dctowz6ir/image/upload/v1774928436/regenerate_this_image_202603271448_ryggmv.jpg') center center / cover no-repeat;
     }
 
-    .csr-hero::after {
+    .contact-hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 18% 26%, rgba(231,195,121,0.18) 0%, rgba(231,195,121,0.05) 24%, rgba(231,195,121,0) 48%),
-        linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.3) 100%);
+      <!-- background:
+        radial-gradient(circle at 20% 30%, rgba(231,195,121,0.16) 0%, rgba(231,195,121,0.04) 22%, rgba(231,195,121,0) 46%),
+        linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.32) 100%); -->
       pointer-events: none;
     }
 
-    .csr-hero-inner {
+    .contact-hero-inner {
       position: relative;
       z-index: 2;
       width: min(1240px, calc(100% - 48px));
       margin: 0 auto;
     }
 
-    .csr-kicker {
+    .contact-kicker {
       display: inline-block;
       margin-bottom: 18px;
       font-size: 0.78rem;
@@ -329,48 +327,54 @@
       color: rgba(231,195,121,0.92);
     }
 
-    .csr-hero h1 {
-      max-width: 10em;
+    .contact-hero h1 {
+      max-width: 8em;
       font-family: var(--font-serif);
-      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-size: clamp(3.6rem, 7vw, 7rem);
       line-height: 0.9;
       letter-spacing: -0.04em;
       color: #f4d596;
       margin-bottom: 18px;
     }
 
-    .csr-hero p {
-      max-width: 48rem;
-      font-size: 1.04rem;
-      line-height: 1.85;
-      color: rgba(255,255,255,0.84);
+    .contact-hero p {
+      max-width: 42rem;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.82);
     }
 
-    /* Main content */
-    .csr-section {
+    /* Content section */
+    .contact-section {
       position: relative;
       z-index: 5;
       width: 100%;
       background: var(--green-deep);
+      <!-- width: min(1240px, calc(100% - 48px)); -->
       margin: -48px auto 0;
-      padding: 70px 0 140px;
+      padding: 60px;
+      padding-bottom: 140px;
     }
 
-    .intro-grid {
+    .contact-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      grid-template-columns: minmax(700px, 1.05fr) minmax(0, 0.95fr);
       gap: 28px;
-      margin-bottom: 34px;
+      align-items: start;
     }
 
-    .content-card {
+    .contact-card,
+    .contact-form-card {
+      <!-- border-radius: 28px; -->
       background: rgba(248, 241, 228, 0.06);
+    }
+
+    .contact-card {
       padding: 38px 34px;
     }
 
-    .content-card h2,
-    .section-heading h2,
-    .cta-card h2 {
+    .contact-card h2,
+    .contact-form-card h2 {
       font-family: var(--font-serif);
       font-size: clamp(2rem, 4vw, 3.1rem);
       line-height: 0.95;
@@ -379,241 +383,132 @@
       margin-bottom: 18px;
     }
 
-    .content-card p,
-    .section-heading p,
-    .impact-note,
-    .principle-text,
-    .cta-card p {
-      color: rgba(255,255,255,0.76);
-      line-height: 1.85;
+    .contact-card > p,
+    .contact-form-card > p {
+      color: rgba(255,255,255,0.74);
+      line-height: 1.8;
       font-size: 0.98rem;
+      margin-bottom: 28px;
+      max-width: 40rem;
     }
 
-    .content-card p + p,
-    .cta-card p + p {
-      margin-top: 16px;
-    }
-
-    .pillars-list {
+    .detail-list {
       display: grid;
       gap: 18px;
+      margin-bottom: 34px;
     }
 
-    .pillars-item {
+    .detail-item {
+      display: grid;
+      gap: 6px;
       padding-bottom: 18px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .pillars-item:last-child {
-      padding-bottom: 0;
+    .detail-item:last-child {
       border-bottom: none;
+      padding-bottom: 0;
     }
 
-    .pillars-label {
-      display: inline-block;
-      margin-bottom: 8px;
-      font-size: 0.74rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(231,195,121,0.92);
-    }
-
-    .pillars-item p {
-      color: rgba(255,255,255,0.84);
-      line-height: 1.75;
-      font-size: 0.94rem;
-    }
-
-    .section-heading {
-      margin: 0 0 28px;
-      max-width: 46rem;
-    }
-
-    .csr-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-      margin-bottom: 42px;
-    }
-
-    .csr-card {
-      position: relative;
-      min-height: 100%;
-      background: rgba(248, 241, 228, 0.06);
-      overflow: hidden;
-    }
-
-    .csr-card-media {
-      position: relative;
-      height: 250px;
-      overflow: hidden;
-    }
-
-    .csr-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transform: scale(1.02);
-      transition: transform 0.7s ease;
-    }
-
-    .csr-card:hover .csr-card-media img {
-      transform: scale(1.08);
-    }
-
-    .csr-card-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.28) 100%),
-        radial-gradient(circle at 16% 24%, rgba(231,195,121,0.16) 0%, rgba(231,195,121,0.04) 24%, rgba(231,195,121,0) 46%);
-      pointer-events: none;
-    }
-
-    .csr-card-body {
-      padding: 28px 26px 30px;
-    }
-
-    .csr-card-tag {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 0.72rem;
+    .detail-label {
+      font-size: 0.76rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: rgba(231,195,121,0.9);
     }
 
-    .csr-card h3 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      line-height: 0.98;
-      letter-spacing: -0.03em;
-      color: #f3d28f;
-      margin-bottom: 14px;
+    .detail-value {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
     }
 
-    .csr-card p {
-      color: rgba(255,255,255,0.76);
-      line-height: 1.8;
-      font-size: 0.95rem;
-      margin-bottom: 18px;
+    .detail-value a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .csr-points {
+    .detail-value a:hover {
+      opacity: 0.75;
+    }
+
+    .office-grid {
       display: grid;
-      gap: 10px;
-    }
-
-    .csr-points li {
-      list-style: none;
-      position: relative;
-      padding-left: 16px;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.65;
-      font-size: 0.92rem;
-    }
-
-    .csr-points li::before {
-      content: "";
-      position: absolute;
-      top: 0.72em;
-      left: 0;
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--gold);
-      transform: translateY(-50%);
-    }
-
-    .impact-block {
-      margin-bottom: 42px;
-    }
-
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      margin-top: 24px;
+      margin-top: 12px;
     }
 
-    .impact-card {
-      padding: 28px 24px;
+    .office-box {
+      padding: 20px;
+      border-radius: 18px;
       background: rgba(255,255,255,0.035);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
     }
 
-    .impact-card strong {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      color: #f3d28f;
+    .office-box h3 {
+      font-size: 0.82rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.9);
       margin-bottom: 12px;
       font-weight: 500;
     }
 
-    .impact-card span {
-      display: block;
-      font-size: 0.76rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(231,195,121,0.88);
-      margin-bottom: 10px;
+    .office-box p {
+      color: rgba(255,255,255,0.82);
+      line-height: 1.75;
+      font-size: 0.95rem;
     }
 
-    .impact-card p {
-      color: rgba(255,255,255,0.72);
-      line-height: 1.7;
-      font-size: 0.9rem;
+    .contact-form-card {
+      padding: 38px 34px;
     }
 
-    .principles-grid {
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
+      gap: 16px;
     }
 
-    .principle-card {
-      padding: 26px 24px;
-      background: rgba(248, 241, 228, 0.06);
-      min-height: 100%;
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.045);
+      color: #fff;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: border-color 0.25s ease, background 0.25s ease;
     }
 
-    .principle-number {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 0.74rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(231,195,121,0.88);
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(255,255,255,0.46);
     }
 
-    .principle-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      line-height: 0.98;
-      letter-spacing: -0.03em;
-      color: #f2d18e;
-      margin-bottom: 12px;
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus {
+      border-color: rgba(231,195,121,0.5);
+      background: rgba(255,255,255,0.06);
     }
 
-    .cta-card {
-      margin-top: 42px;
-      padding: 42px 38px;
-      background:
-        linear-gradient(135deg, rgba(248, 241, 228, 0.07) 0%, rgba(248, 241, 228, 0.04) 100%);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 20px;
-      align-items: end;
+    .contact-form textarea {
+      min-height: 160px;
+      resize: vertical;
     }
 
-    .apply-btn {
+    .submit-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -621,22 +516,29 @@
       min-width: 180px;
       padding: 14px 22px;
       border-radius: 999px;
+      font-family: var(--fonts-serif);
       border: 1px solid rgba(231,195,121,0.5);
       background: transparent;
       color: #f4d596;
-      text-decoration: none;
       font-size: 0.84rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       font-weight: 600;
+      cursor: pointer;
       transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-      white-space: nowrap;
     }
 
-    .apply-btn:hover {
+    .submit-btn:hover {
       transform: translateY(-2px);
       background: rgba(231,195,121,0.08);
       border-color: rgba(231,195,121,0.8);
+    }
+
+    .form-note {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.52);
+      margin-top: 6px;
     }
 
     /* Reveal footer */
@@ -762,10 +664,7 @@
       will-change: transform;
     }
 
-    .mega-menu-inner {
-      min-height: 100%;
-      padding: 20px 16px 18px;
-    }
+    .mega-menu-inner { min-height: 100%; padding: 20px 16px 18px; }
 
     .mega-menu-layout {
       position: relative;
@@ -830,9 +729,7 @@
     }
 
     .mega-menu-card:hover img,
-    .mega-menu-card:focus-visible img {
-      transform: scale(1.04);
-    }
+    .mega-menu-card:focus-visible img { transform: scale(1.04); }
 
     .mega-menu-card-label {
       position: absolute;
@@ -865,9 +762,7 @@
       width: 100%;
     }
 
-    .mega-menu-links li + li {
-      margin-top: 20px;
-    }
+    .mega-menu-links li + li { margin-top: 20px; }
 
     .mega-menu-links a {
       display: inline-block;
@@ -921,22 +816,10 @@
     .mega-menu-close span:nth-child(1) { transform: rotate(45deg); }
     .mega-menu-close span:nth-child(2) { transform: rotate(-45deg); }
 
-    body.menu-open {
-      overflow: hidden;
-    }
-
-    body.menu-open .mega-menu {
-      pointer-events: auto;
-    }
-
-    body.menu-open .mega-menu-backdrop {
-      opacity: 1;
-    }
-
-    body.menu-open .mega-menu-panel {
-      transform: translateY(0);
-    }
-
+    body.menu-open { overflow: hidden; }
+    body.menu-open .mega-menu { pointer-events: auto; }
+    body.menu-open .mega-menu-backdrop { opacity: 1; }
+    body.menu-open .mega-menu-panel { transform: translateY(0); }
     body.menu-open .mega-menu-card,
     body.menu-open .mega-menu-nav {
       opacity: 1;
@@ -948,17 +831,8 @@
     body.menu-open .mega-menu-nav { transition-delay: 0.3s; }
 
     @media (max-width: 1100px) {
-      .intro-grid,
-      .cta-card {
+      .contact-grid {
         grid-template-columns: 1fr;
-      }
-
-      .csr-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .impact-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .reveal-footer-grid {
@@ -995,10 +869,6 @@
       .reveal-footer-inner {
         padding: 42px 20px 30px;
       }
-
-      .principles-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 768px) {
@@ -1007,9 +877,15 @@
         padding: 0 24px;
       }
 
-      .content-card,
-      .cta-card {
+      .office-grid,
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card,
+      .contact-form-card {
         padding: 28px 22px;
+        border-radius: 22px;
       }
 
       .mega-menu-inner { padding: 16px 12px 16px; }
@@ -1032,10 +908,6 @@
         right: 14px;
         width: 58px;
         height: 58px;
-      }
-
-      .csr-card-media {
-        height: 220px;
       }
     }
 
@@ -1066,30 +938,24 @@
       .topbar-logo img { width: 60px; }
       .topbar.is-scrolled .topbar-logo img { width: 50px; }
 
-      .csr-hero {
-        min-height: 76svh;
-        padding: 126px 0 54px;
+      .contact-hero {
+        min-height: 70svh;
+        padding: 120px 0 48px;
       }
 
-      .csr-hero-inner,
-      .container {
-        width: calc(100% - 32px);
-      }
-
-      .csr-section {
-        padding: 48px 0 120px;
-      }
-
-      .content-card {
-        padding: 24px 20px;
-      }
-
-      .impact-grid {
-        grid-template-columns: 1fr;
+      .contact-hero-inner,
+      .contact-section {
+        <!-- width: calc(100% - 32px); -->
+        width: 100%;
+        padding: 20px;
       }
 
       .page-shell {
         padding-bottom: 70svh;
+      }
+
+      .reveal-footer {
+        position: fixed;
       }
 
       .reveal-footer-inner {
@@ -1104,6 +970,41 @@
       .reveal-footer-bottom {
         flex-direction: column;
       }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.85);
+      font-weight: 500;
+    }
+
+    /* Improve select appearance */
+    .contact-form select {
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%),
+                        linear-gradient(135deg, var(--gold) 50%, transparent 50%);
+      background-position: calc(100% - 18px) calc(50% - 3px),
+                           calc(100% - 12px) calc(50% - 3px);
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      padding-right: 40px;
+    }
+
+    /* Slight spacing polish */
+    .contact-form {
+      gap: 18px;
+    }
+
+    .form-row {
+      gap: 18px;
     }
   </style>
 </head>
@@ -1131,193 +1032,55 @@
   </div>
 
   <main class="page-shell">
-    <section class="csr-hero">
-      <div class="csr-hero-inner">
-        <span class="csr-kicker">Corporate Social Responsibility</span>
-        <h1>Responsible growth, built into every decision.</h1>
-        <p>
-          We believe meaningful development should create value beyond the project itself. Our approach to corporate social responsibility is shaped by long-term thinking, disciplined governance, and a commitment to supporting the communities and environments connected to our work.
-        </p>
+    <section class="contact-hero">
+      <div class="contact-hero-inner">
+        <!-- <span class="contact-kicker">Contact</span> -->
+        <h1>Contact us</h1>
       </div>
     </section>
 
-    <section class="csr-section">
-      <div class="container">
-        <div class="intro-grid">
-          <div class="content-card">
-            <h2>Our approach</h2>
-            <p>
-              At Vanté, responsibility is not treated as a parallel initiative. It is part of how we evaluate opportunities, build partnerships, and carry projects forward. We believe the quality of a business is reflected not only in what it delivers, but in how it operates, how it engages people, and what it leaves behind.
-            </p>
-            <p>
-              Our CSR priorities focus on three areas that matter most to us: environmental sustainability, philanthropy, and governance &amp; ethics. Together, they help guide how we think about impact, accountability, and the long-term role we want to play in the cities and communities we are part of.
-            </p>
-          </div>
-
-          <div class="content-card">
-            <h2>What guides us</h2>
-            <div class="pillars-list">
-              <div class="pillars-item">
-                <span class="pillars-label">Long-term value</span>
-                <p>We prioritise decisions that remain sound over time, not just in the moment.</p>
-              </div>
-              <div class="pillars-item">
-                <span class="pillars-label">Measured impact</span>
-                <p>We focus on practical actions that can be tracked, strengthened, and improved.</p>
-              </div>
-              <div class="pillars-item">
-                <span class="pillars-label">Shared responsibility</span>
-                <p>We see responsibility as collective, across our team, partners, and stakeholders.</p>
-              </div>
-              <div class="pillars-item">
-                <span class="pillars-label">Integrity in practice</span>
-                <p>Standards matter most when they are visible in everyday decisions and conduct.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-heading">
-          <h2>Our focus areas</h2>
+    <section class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-form-card">
+          <h2>Thank you</h2>
           <p>
-            We are building a CSR framework that is thoughtful, practical, and aligned with the type of company we are becoming. The goal is not to do everything at once, but to do the right things consistently and with intention.
+            We will begin processing your enquiry and will contact you once we're ready.
           </p>
+          <p>Thank you again for connecting with us.</p>
+
+          
         </div>
-
-        <div class="csr-grid">
-          <article class="csr-card">
-            <div class="csr-card-media">
-              <img src="https://res.cloudinary.com/dctowz6ir/image/upload/v1774928423/regenerate_this_image_202603271031_1_dhlpko.jpg" alt="Tree-lined urban skyline">
-            </div>
-            <div class="csr-card-body">
-              <span class="csr-card-tag">01 / Environmental Sustainability</span>
-              <h3>Building with greater care for what surrounds us.</h3>
-              <p>
-                We aim to reduce unnecessary environmental impact by encouraging better planning, resource awareness, and more responsible choices across the lifecycle of our work. Sustainability, to us, begins with attention and discipline.
-              </p>
-              <ul class="csr-points">
-                <li>Support more efficient use of energy, materials, and operational resources</li>
-                <li>Consider environmental performance early in planning and project decisions</li>
-                <li>Encourage partners and suppliers to align with higher sustainability standards</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="csr-card">
-            <div class="csr-card-media">
-              <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop" alt="Community volunteers working together">
-            </div>
-            <div class="csr-card-body">
-              <span class="csr-card-tag">02 / Philanthropy</span>
-              <h3>Creating value that extends beyond business.</h3>
-              <p>
-                We believe businesses should contribute to the strength of the communities around them. Our philanthropic direction focuses on thoughtful support, meaningful partnerships, and giving that responds to real needs with humility and consistency.
-              </p>
-              <ul class="csr-points">
-                <li>Support selected community programmes and local causes with long-term relevance</li>
-                <li>Encourage volunteering and team participation where we can make a genuine contribution</li>
-                <li>Build relationships with organisations that are creating measurable social value</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="csr-card">
-            <div class="csr-card-media">
-              <img src="https://images.unsplash.com/photo-1565728744382-61accd4aa148?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professional meeting and governance discussion">
-            </div>
-            <div class="csr-card-body">
-              <span class="csr-card-tag">03 / Governance &amp; Ethics</span>
-              <h3>Trust is built through discipline, clarity, and conduct.</h3>
-              <p>
-                Strong governance is essential to sustainable growth. We are committed to maintaining responsible business practices, clear accountability, and ethical conduct in the way we lead, communicate, and make decisions.
-              </p>
-              <ul class="csr-points">
-                <li>Promote transparency, fairness, and responsible decision-making</li>
-                <li>Maintain high expectations around professional conduct and business ethics</li>
-                <li>Strengthen internal accountability, risk awareness, and stakeholder trust</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-
-        <div class="impact-block">
-          <div class="section-heading">
-            <h2>How we measure progress</h2>
-            <p class="impact-note">
-              We see CSR as an evolving commitment. Our focus is on building credible foundations, setting clear priorities, and creating a framework that allows progress to be reviewed over time.
-            </p>
-          </div>
-
-          <div class="impact-grid">
-            <div class="impact-card">
-              <strong>01</strong>
-              <span>Operational awareness</span>
-              <p>Tracking where better resource use and lower-impact decisions can be built into daily practice.</p>
-            </div>
-            <div class="impact-card">
-              <strong>02</strong>
-              <span>Community contribution</span>
-              <p>Identifying where our time, support, and partnerships can create meaningful local value.</p>
-            </div>
-            <div class="impact-card">
-              <strong>03</strong>
-              <span>Policy and conduct</span>
-              <p>Reinforcing standards around ethics, accountability, and responsible governance across the business.</p>
-            </div>
-            <div class="impact-card">
-              <strong>04</strong>
-              <span>Continuous improvement</span>
-              <p>Reviewing what is working, where gaps remain, and how our approach should mature over time.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-heading">
-          <h2>Principles behind the work</h2>
+        <div class="contact-card">
+          <!-- <h2>Get in touch</h2>
           <p>
-            Our CSR direction is grounded in a few simple principles. These are intended to keep our efforts focused, credible, and aligned with the long-term character of the company.
-          </p>
-        </div>
+            Reach out to our team for project enquiries, corporate information, strategic collaborations,
+            or regional office support. We aim to respond with care, clarity, and discretion.
+          </p> -->
 
-        <div class="principles-grid">
-          <div class="principle-card">
-            <span class="principle-number">Principle 01</span>
-            <h3>Be practical</h3>
-            <p class="principle-text">
-              We focus on actions that can be sustained in real business conditions, not symbolic gestures with little follow-through.
-            </p>
-          </div>
-          <div class="principle-card">
-            <span class="principle-number">Principle 02</span>
-            <h3>Be accountable</h3>
-            <p class="principle-text">
-              Commitments matter only when they are owned. We want responsibility to be visible in decisions, conduct, and outcomes.
-            </p>
-          </div>
-          <div class="principle-card">
-            <span class="principle-number">Principle 03</span>
-            <h3>Be consistent</h3>
-            <p class="principle-text">
-              Lasting impact is usually built through steady, repeated action. We value continuity more than one-off activity.
-            </p>
-          </div>
-          <div class="principle-card">
-            <span class="principle-number">Principle 04</span>
-            <h3>Be thoughtful</h3>
-            <p class="principle-text">
-              The best decisions balance ambition with care, and growth with a clear understanding of wider consequences.
-            </p>
-          </div>
-        </div>
+          <div class="detail-list">
+            <div class="detail-item">
+              <div class="detail-label">Singapore</div>
+              <div class="detail-value">
+                <p>28 Maxwell Road, #04-06</p>
+                <p>Maxwell Chambers Suites</p>
+                <p>Singapore 069120</p>
+              </div>
+            </div>
 
-        <div class="cta-card">
-          <div>
-            <h2>Interested in working with us on responsible growth?</h2>
-            <p>
-              Whether you are exploring partnerships, community initiatives, or sustainability conversations, we welcome thoughtful dialogue with organisations and individuals who share a long-term view.
-            </p>
+            <div class="detail-item">
+              <div class="detail-label">Ho Chi Minh City</div>
+              <div class="detail-value">
+                <p>Level 9, Times Square, 57-69F</p>
+                <p>Dong Khoi Street, Saigon Ward</p>
+                <p>Ho Chi Minh City, Vietnam</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-label">Business Hours</div>
+              <div class="detail-value">Monday to Friday, 9:00 AM – 6:00 PM</div>
+            </div>
           </div>
-          <a href="contact.html" class="apply-btn">Get in touch</a>
         </div>
       </div>
     </section>
@@ -1390,6 +1153,26 @@
   </div>
 
   <script>
+    function revealPage() {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove("preload");
+        document.documentElement.classList.add("page-ready");
+      });
+    }
+
+    window.addEventListener("load", revealPage);
+
+    window.addEventListener("pageshow", function () {
+      document.documentElement.classList.remove("page-ready");
+      document.documentElement.classList.add("preload");
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          revealPage();
+        });
+      });
+    });
+
     function setupTopbarBehavior() {
       const topbar = document.getElementById('topbar');
       if (!topbar) return;
@@ -1406,15 +1189,6 @@
       window.addEventListener('scroll', updateTopbarState, { passive: true });
       window.addEventListener('resize', updateTopbarState);
     }
-
-    function revealPage() {
-      requestAnimationFrame(() => {
-        document.body.classList.add("page-loaded");
-      });
-    }
-
-    window.addEventListener("load", revealPage);
-    window.addEventListener("pageshow", revealPage);
 
     window.addEventListener("DOMContentLoaded", function () {
       setupTopbarBehavior();
