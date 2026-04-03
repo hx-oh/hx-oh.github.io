@@ -830,6 +830,63 @@
     body.menu-open .mega-menu-card:nth-child(2) { transition-delay: 0.24s; }
     body.menu-open .mega-menu-nav { transition-delay: 0.3s; }
 
+
+    @media (min-width: 769px) and (max-width: 1100px) {
+      .contact-section {
+        padding: 44px 32px 120px;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.92fr);
+        gap: 22px;
+        align-items: start;
+      }
+
+      .contact-card,
+      .contact-form-card {
+        min-width: 0;
+      }
+
+      .contact-card {
+        padding: 30px 24px;
+      }
+
+      .contact-form-card {
+        padding: 30px 24px;
+      }
+
+      .detail-list {
+        gap: 16px;
+      }
+
+      .detail-item {
+        min-width: 0;
+      }
+
+      .detail-value,
+      .detail-value p,
+      .office-box p,
+      .reveal-footer-contact li {
+        overflow-wrap: anywhere;
+        word-break: normal;
+      }
+
+      .detail-value {
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+
+      .reveal-footer-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 0.6fr) minmax(220px, 0.6fr);
+        gap: 18px;
+      }
+
+      .reveal-footer-contact li {
+        font-size: 0.78rem;
+        line-height: 1.55;
+      }
+    }
+
     @media (max-width: 1100px) {
       .contact-grid {
         grid-template-columns: 1fr;
@@ -886,6 +943,14 @@
       .contact-form-card {
         padding: 28px 22px;
         border-radius: 22px;
+        min-width: 0;
+      }
+
+      .detail-value,
+      .detail-value p,
+      .office-box p,
+      .reveal-footer-contact li {
+        overflow-wrap: anywhere;
       }
 
       .mega-menu-inner { padding: 16px 12px 16px; }
