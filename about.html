@@ -935,7 +935,7 @@
       position: relative;
       z-index: 2;
       width: min(1120px, 100%);
-      max-height: 92vh;
+      max-height: 80vh;
       overflow: hidden;
       border-radius: 24px;
       background:
@@ -947,7 +947,7 @@
       display: grid;
       grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
       min-height: 100%;
-      max-height: 92vh;
+      max-height: 80vh;
     }
 
     .leader-modal-media {
@@ -968,7 +968,7 @@
     .leader-modal-content {
       padding: 34px 34px 30px;
       overflow-y: auto;
-      max-height: 92vh;
+      max-height: 80vh;
     }
 
     .leader-modal-role {
@@ -1722,34 +1722,6 @@
         min-height: 400px;
       } */
 
-      .leader-modal {
-        padding: 0;
-      }
-
-      .leader-modal-dialog {
-        width: 100vw;
-        height: 100vh;
-        max-height: 100vh;
-        border-radius: 0;
-      }
-
-      .leader-modal-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: 180px minmax(0, 1fr);
-        max-height: 100vh;
-        height: 100vh;
-      }
-
-      .leader-modal-media {
-        min-height: 180px;
-        max-height: 180px;
-      }
-
-      .leader-modal-content {
-        padding: 26px 22px 22px;
-        max-height: calc(100vh - 220px);
-      }
-
       .reveal-footer-inner {
         padding: 42px 20px 30px;
       }
@@ -1952,7 +1924,35 @@
         max-width: none;
       }
 
+      .leader-modal {
+        padding: 0;
+      }
+
+      .leader-modal-dialog {
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+
       .leader-modal-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 180px minmax(0, 1fr);
+        max-height: 100vh;
+        height: 100vh;
+      }
+
+      .leader-modal-media {
+        min-height: 180px;
+        max-height: 180px;
+      }
+
+      .leader-modal-content {
+        padding: 26px 22px 22px;
+        max-height: calc(100vh - 220px);
+      }
+
+      /* .leader-modal-grid {
         grid-template-rows: 150px minmax(0, 1fr);
       }
 
@@ -1964,7 +1964,7 @@
       .leader-modal-content {
         padding: 75px 18px 18px;
         max-height: calc(100vh - 150px);
-      }
+      } */
 
       .leader-modal-name {
         font-size: 2rem;
