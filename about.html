@@ -586,12 +586,19 @@
       isolation: isolate;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      contain: layout paint;
     }
 
     .mission-card-media {
       position: absolute;
       inset: 0;
       background: #1b2d27;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .mission-card-media img {
@@ -599,7 +606,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transform: scale(1.01);
+      transform: scale(1.01) translateZ(0);
+      -webkit-transform: scale(1.01) translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .mission-card::before {
@@ -1454,8 +1464,27 @@
         position: relative !important;
         inset: auto !important;
         transform: none !important;
+        -webkit-transform: none !important;
         height: 320px;
         min-height: 320px;
+        opacity: 1 !important;
+        will-change: auto !important;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+      }
+
+      .mission-canvas,
+      .mission-card,
+      .mission-card-media,
+      .mission-card-media img {
+        transform: none !important;
+        -webkit-transform: none !important;
+        will-change: auto !important;
+      }
+
+      .mission-card-media img {
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
       }
 
       .values-pin-wrap {
@@ -2683,9 +2712,62 @@
     window.addEventListener('load', initPage);
 
     let resizeTimeout;
-    function handleResponsiveRefresh() {
+    let lastWindowWidth = window.innerWidth;
+    let lastWindowHeight = window.innerHeight;
+    let lastLayoutMode = getLayoutMode();
+
+    function getLayoutMode() {
+      const width = window.innerWidth;
+      if (width <= 768) return 'mobile';
+      if (width <= 900) return 'tablet';
+      return 'desktop';
+    }
+
+    function shouldRefresh(source = 'resize') {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const nextLayoutMode = getLayoutMode();
+
+      const widthDelta = Math.abs(width - lastWindowWidth);
+      const heightDelta = Math.abs(height - lastWindowHeight);
+      const layoutChanged = nextLayoutMode !== lastLayoutMode;
+
+      if (layoutChanged) {
+        lastWindowWidth = width;
+        lastWindowHeight = height;
+        lastLayoutMode = nextLayoutMode;
+        return true;
+      }
+
+      if (nextLayoutMode === 'mobile') {
+        if (source === 'visualViewport' && widthDelta < 8) {
+          lastWindowHeight = height;
+          return false;
+        }
+
+        if (widthDelta < 8) {
+          lastWindowHeight = height;
+          return false;
+        }
+      } else {
+        if (widthDelta < 8 && heightDelta < 80) {
+          lastWindowWidth = width;
+          lastWindowHeight = height;
+          return false;
+        }
+      }
+
+      lastWindowWidth = width;
+      lastWindowHeight = height;
+      lastLayoutMode = nextLayoutMode;
+      return true;
+    }
+
+    function handleResponsiveRefresh(source = 'resize') {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
+        if (!shouldRefresh(source)) return;
+
         setupVisionReveal();
         setupMissionCards();
         setupValueCards();
@@ -2693,11 +2775,19 @@
       }, 220);
     }
 
-    window.addEventListener('resize', handleResponsiveRefresh);
-    window.addEventListener('orientationchange', handleResponsiveRefresh);
+    window.addEventListener('resize', () => handleResponsiveRefresh('resize'));
+
+    window.addEventListener('orientationchange', () => {
+      lastWindowWidth = 0;
+      lastWindowHeight = 0;
+      lastLayoutMode = '';
+      handleResponsiveRefresh('orientationchange');
+    });
 
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', handleResponsiveRefresh);
+      window.visualViewport.addEventListener('resize', () => {
+        handleResponsiveRefresh('visualViewport');
+      });
     }
   </script>
 </body>
