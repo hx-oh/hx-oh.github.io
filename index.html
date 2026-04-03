@@ -2278,52 +2278,122 @@
         return;
       }
 
-      updateLoaderProgress(0);
+      updateLoaderProgress(10);
 
-      const updateFromBuffer = () => {
-        if (!isFinite(video.duration) || video.duration <= 0 || !video.buffered.length) return;
+      let released = false;
 
-        const bufferedEnd = video.buffered.end(video.buffered.length - 1);
-        const percent = (bufferedEnd / video.duration) * 100;
-        updateLoaderProgress(percent);
-
-        if (isVideoFullyBuffered(video)) {
-          videoFullyLoaded = true;
-          tryHideLoader();
-        }
-      };
-
-      video.addEventListener("loadedmetadata", updateFromBuffer, { passive: true });
-      video.addEventListener("progress", updateFromBuffer, { passive: true });
-      video.addEventListener("canplaythrough", () => {
+      function releaseLoader() {
+        if (released) return;
+        released = true;
         updateLoaderProgress(100);
         videoFullyLoaded = true;
         tryHideLoader();
-      }, { once: true });
-
-      video.addEventListener("error", () => {
-        updateLoaderProgress(100);
-        videoFullyLoaded = true;
-        tryHideLoader();
-      }, { once: true });
-
-      if (video.readyState >= 1) {
-        updateFromBuffer();
       }
 
-      const fullyBufferedPoll = setInterval(() => {
-        updateFromBuffer();
+      function updateFromBuffer() {
+        if (!video.buffered || !video.buffered.length) return;
 
-        if (videoFullyLoaded || isVideoFullyBuffered(video)) {
-          clearInterval(fullyBufferedPoll);
-          updateLoaderProgress(100);
-          videoFullyLoaded = true;
-          tryHideLoader();
+        let percent = 35;
+        if (isFinite(video.duration) && video.duration > 0) {
+          const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+          percent = Math.max(35, Math.min(100, (bufferedEnd / video.duration) * 100));
         }
-      }, 120);
+
+        updateLoaderProgress(percent);
+
+        // good enough to start, no need for full buffering
+        if (video.readyState >= 3) {
+          releaseLoader();
+        }
+      }
+
+      video.addEventListener("loadedmetadata", () => {
+        updateLoaderProgress(30);
+        updateFromBuffer();
+      }, { passive: true });
+
+      video.addEventListener("loadeddata", () => {
+        updateLoaderProgress(60);
+        releaseLoader();
+      }, { once: true });
+
+      video.addEventListener("canplay", () => {
+        updateLoaderProgress(80);
+        releaseLoader();
+      }, { once: true });
+
+      video.addEventListener("progress", updateFromBuffer, { passive: true });
+
+      video.addEventListener("error", () => {
+        releaseLoader();
+      }, { once: true });
+
+      // hard fallback so loader can never hang forever
+      setTimeout(() => {
+        releaseLoader();
+      }, 3500);
+
+      if (video.readyState >= 2) {
+        releaseLoader();
+      }
 
       markMinimumTimeReached();
     }
+
+    // function bindVideoLoading(video) {
+    //   if (!video) {
+    //     videoFullyLoaded = true;
+    //     markMinimumTimeReached();
+    //     tryHideLoader();
+    //     return;
+    //   }
+    //
+    //   updateLoaderProgress(0);
+    //
+    //   const updateFromBuffer = () => {
+    //     if (!isFinite(video.duration) || video.duration <= 0 || !video.buffered.length) return;
+    //
+    //     const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+    //     const percent = (bufferedEnd / video.duration) * 100;
+    //     updateLoaderProgress(percent);
+    //
+    //     if (isVideoFullyBuffered(video)) {
+    //       videoFullyLoaded = true;
+    //       tryHideLoader();
+    //     }
+    //   };
+    //
+    //   video.addEventListener("loadedmetadata", updateFromBuffer, { passive: true });
+    //   video.addEventListener("progress", updateFromBuffer, { passive: true });
+    //   video.addEventListener("canplaythrough", () => {
+    //     updateLoaderProgress(100);
+    //     videoFullyLoaded = true;
+    //     tryHideLoader();
+    //   }, { once: true });
+    //
+    //   video.addEventListener("error", () => {
+    //     updateLoaderProgress(100);
+    //     videoFullyLoaded = true;
+    //     tryHideLoader();
+    //   }, { once: true });
+    //
+    //   if (video.readyState >= 1) {
+    //     updateFromBuffer();
+    //   }
+    //
+    //   const fullyBufferedPoll = setInterval(() => {
+    //     updateFromBuffer();
+    //
+    //     if (videoFullyLoaded || isVideoFullyBuffered(video)) {
+    //       clearInterval(fullyBufferedPoll);
+    //       updateLoaderProgress(100);
+    //       videoFullyLoaded = true;
+    //       tryHideLoader();
+    //     }
+    //   }, 120);
+    //
+    //   markMinimumTimeReached();
+    // }
 
     function showVideo(index) {
       videos.forEach((video, i) => {
