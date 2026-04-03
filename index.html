@@ -1517,7 +1517,7 @@
         <div class="hero-shell" id="heroShell">
           <div class="hero-card" id="heroCard">
             <div class="video-layer">
-              <video id="heroVideo" class="bg-video active" muted playsinline webkit-playsinline preload="metadata" poster="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop">
+              <video id="heroVideo" class="bg-video active" muted autoplay playsinline webkit-playsinline preload="metadata" poster="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop">
                 <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774253583/mazyt5sh1agb9tdsqtmc.mp4" type="video/mp4" />
                 <!-- <source src="https://res.cloudinary.com/dctowz6ir/video/upload/c_crop,h_0.93,g_north,q_auto,f_auto/v1774928408/Residential_facade_lighting_202603261627_rifjnt.mp4" type="video/mp4" /> -->
               </video>
@@ -2237,6 +2237,14 @@
       initPageEffects();
       playBrandReveal();
 
+      const activeVideo = document.querySelector(".bg-video.active");
+      if (activeVideo) {
+        const promise = activeVideo.play();
+        if (promise && typeof promise.catch === "function") {
+          promise.catch(() => {});
+        }
+      }
+
       if (siteLoader) {
         requestAnimationFrame(() => {
           siteLoader.classList.add("is-hidden");
@@ -2339,8 +2347,13 @@
         const isActive = i === index;
         video.classList.toggle("active", isActive);
 
-        if (!isActive) {
+        if (isActive) {
+          video.autoplay = true;
+          video.setAttribute("autoplay", "");
+        } else {
           video.pause();
+          video.autoplay = false;
+          video.removeAttribute("autoplay");
         }
       });
     }
@@ -2384,13 +2397,19 @@
       playlistInitialized = true;
 
       videos.forEach((video, index) => {
-        video.autoplay = false;
-        video.removeAttribute("autoplay");
         video.loop = false;
         video.muted = true;
         video.setAttribute("muted", "");
         video.setAttribute("playsinline", "");
         video.setAttribute("webkit-playsinline", "");
+
+        if (index === 0) {
+          video.autoplay = true;
+          video.setAttribute("autoplay", "");
+        } else {
+          video.autoplay = false;
+          video.removeAttribute("autoplay");
+        }
 
         video.addEventListener("ended", () => {
           const nextIndex = (index + 1) % videos.length;
@@ -2403,7 +2422,22 @@
         });
       });
 
-      playVideo(0);
+      const first = videos[0];
+      if (first) {
+        const ensureFirstPlayback = () => {
+          const promise = first.play();
+          if (promise && typeof promise.catch === "function") {
+            promise.catch(() => {});
+          }
+        };
+
+        if (first.readyState >= 2) {
+          ensureFirstPlayback();
+        } else {
+          first.addEventListener("loadeddata", ensureFirstPlayback, { once: true });
+          warmVideo(first);
+        }
+      }
     }
 
     function getLayoutMode() {
