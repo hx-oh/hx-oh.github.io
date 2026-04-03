@@ -1387,44 +1387,21 @@
 
       .leaders-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-        align-items: start;
+        align-items: stretch;
       }
 
-      .leader-card {
-        min-height: 360px;
-      }
-
+      .leader-card,
       .leader-card:last-child {
         grid-column: auto;
-        width: min(100%, 420px);
-        justify-self: center;
-      }
-
-      .leader-card-copy {
-        padding: 22px 20px 20px;
-      }
-
-      .leader-role {
-        font-size: 0.68rem;
-        margin-bottom: 8px;
-      }
-
-      .leader-name {
-        font-size: clamp(1.45rem, 2.2vw, 1.75rem);
-        margin-bottom: 0;
+        width: 100%;
       }
 
       .leader-modal-grid {
-        grid-template-columns: minmax(300px, 38%) minmax(0, 1fr);
+        grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
       }
 
-      .leader-modal-media {
-        min-height: 560px;
-      }
-
-      .leader-modal-media img {
-        object-position: center 18%;
+      .leader-card {
+        min-height: 380px;
       }
 
       .reveal-footer-grid {
@@ -1450,56 +1427,6 @@
 
       .mega-menu-card {
         max-height: 240px;
-      }
-    }
-
-    @media (min-width: 769px) and (max-width: 900px) {
-      .leaders-grid {
-        gap: 16px;
-      }
-
-      .leader-card {
-        min-height: 320px;
-      }
-
-      .leader-card:last-child {
-        width: min(100%, 380px);
-      }
-
-      .leader-card-copy {
-        padding: 20px 18px 18px;
-      }
-
-      .leader-role {
-        font-size: 0.64rem;
-      }
-
-      .leader-name {
-        font-size: 1.45rem;
-      }
-
-      .leader-modal-dialog {
-        width: min(860px, calc(100vw - 36px));
-        max-height: 90vh;
-      }
-
-      .leader-modal-grid {
-        grid-template-columns: minmax(280px, 40%) minmax(0, 1fr);
-        max-height: 90vh;
-      }
-
-      .leader-modal-media {
-        min-height: 100%;
-        max-height: none;
-      }
-
-      .leader-modal-media img {
-        object-position: center 14%;
-      }
-
-      .leader-modal-content {
-        padding: 28px 26px 24px;
-        max-height: 90vh;
       }
     }
 

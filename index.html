@@ -188,6 +188,22 @@
       opacity: 1;
     }
 
+    .hero-fallback {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(16, 45, 36, 0.18), rgba(8, 24, 19, 0.52)),
+        url('https://res.cloudinary.com/dctowz6ir/image/upload/v1774928431/regenerate_this_image_202603271439_gmybbd.jpg') center center / cover no-repeat;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-fallback.active {
+      opacity: 1;
+    }
+
     .overlay {
       position: absolute;
       inset: 0;
@@ -1517,12 +1533,13 @@
         <div class="hero-shell" id="heroShell">
           <div class="hero-card" id="heroCard">
             <div class="video-layer">
-              <video id="heroVideo" class="bg-video active" muted autoplay playsinline webkit-playsinline preload="metadata" poster="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1600&auto=format&fit=crop">
+              <div id="heroFallback" class="hero-fallback"></div>
+              <video id="heroVideo" class="bg-video active" muted autoplay playsinline webkit-playsinline preload="metadata" poster="https://images.unsplash.com/photo-1623076149912-7edb49c66c0b?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                 <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774253583/mazyt5sh1agb9tdsqtmc.mp4" type="video/mp4" />
                 <!-- <source src="https://res.cloudinary.com/dctowz6ir/video/upload/c_crop,h_0.93,g_north,q_auto,f_auto/v1774928408/Residential_facade_lighting_202603261627_rifjnt.mp4" type="video/mp4" /> -->
               </video>
 
-              <video class="bg-video" muted playsinline webkit-playsinline preload="metadata" poster="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop">
+              <video class="bg-video" muted playsinline webkit-playsinline preload="metadata" poster="https://images.unsplash.com/photo-1521019795854-14e15f600980?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                 <source src="https://res.cloudinary.com/dctowz6ir/video/upload/v1774254339/hcmc_video2_gsaevy.mp4" type="video/mp4" />
               </video>
             </div>
@@ -1751,6 +1768,7 @@
 
     const videos = document.querySelectorAll(".bg-video");
     const firstVideo = videos[0];
+    const fallback = document.getElementById("heroFallback");
 
     const minimumLoaderTime = 2000;
     const loaderStartTime = performance.now();
@@ -1767,6 +1785,7 @@
     let currentLayoutMode = "";
     let lastViewportWidth = window.innerWidth;
     let lastViewportHeight = window.innerHeight;
+    let fallbackActivated = false;
 
     function updateLoaderProgress(percent) {
       const safePercent = Math.max(0, Math.min(100, Math.round(percent)));
@@ -2237,11 +2256,15 @@
       initPageEffects();
       playBrandReveal();
 
-      const activeVideo = document.querySelector(".bg-video.active");
+      const activeVideo = !fallbackActivated ? document.querySelector(".bg-video.active") : null;
       if (activeVideo) {
         const promise = activeVideo.play();
         if (promise && typeof promise.catch === "function") {
-          promise.catch(() => {});
+          promise.catch(() => {
+            if (getLayoutMode() === "tablet") {
+              activateFallback();
+            }
+          });
         }
       }
 
@@ -2286,6 +2309,25 @@
       } catch (e) {}
     }
 
+    function activateFallback() {
+      if (fallbackActivated) return;
+      fallbackActivated = true;
+
+      if (fallback) {
+        fallback.classList.add("active");
+      }
+
+      videos.forEach((video, index) => {
+        video.pause();
+        video.style.display = "none";
+        video.classList.remove("active");
+        if (index === 0) {
+          video.removeAttribute("autoplay");
+          video.autoplay = false;
+        }
+      });
+    }
+
     function bindVideoLoading(video) {
       if (!video) {
         videoFullyLoaded = true;
@@ -2328,12 +2370,16 @@
       video.addEventListener("progress", updateFromState, { passive: true });
 
       video.addEventListener("error", () => {
+        activateFallback();
         resolveReady();
       }, { once: true });
 
       setTimeout(() => {
+        if (!videoFullyLoaded && getLayoutMode() === "tablet") {
+          activateFallback();
+        }
         resolveReady();
-      }, 4500);
+      }, 3500);
 
       if (video.readyState >= 3) {
         resolveReady();
@@ -2343,6 +2389,8 @@
     }
 
     function showVideo(index) {
+      if (fallbackActivated) return;
+
       videos.forEach((video, i) => {
         const isActive = i === index;
         video.classList.toggle("active", isActive);
@@ -2372,14 +2420,19 @@
       } catch (e) {}
 
       const startPlayback = () => {
+        if (fallbackActivated) return;
+
         const playPromise = currentVideo.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
+            if (getLayoutMode() === "tablet") {
+              activateFallback();
+              return;
+            }
+
             currentVideo.muted = true;
             currentVideo.setAttribute("muted", "");
-            currentVideo.play().catch(() => {
-              console.warn("Autoplay blocked. Videos must be muted and allowed by browser.");
-            });
+            currentVideo.play().catch(() => {});
           });
         }
       };
@@ -2423,7 +2476,7 @@
       });
 
       const first = videos[0];
-      if (first) {
+      if (first && !fallbackActivated) {
         const ensureFirstPlayback = () => {
           const promise = first.play();
           if (promise && typeof promise.catch === "function") {
@@ -2613,6 +2666,14 @@
         }
       });
     });
+
+    if (getLayoutMode() === "tablet") {
+      setTimeout(() => {
+        if (!videoFullyLoaded && !fallbackActivated) {
+          activateFallback();
+        }
+      }, 3000);
+    }
 
     lockScroll();
     warmVideo(firstVideo);
