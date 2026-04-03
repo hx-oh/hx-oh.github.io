@@ -1711,7 +1711,7 @@
         margin-bottom: 26px;
       }
 
-      .leaders-grid {
+      /* .leaders-grid {
         grid-template-columns: 1fr;
         gap: 18px;
       }
@@ -1720,7 +1720,7 @@
       .leader-card:last-child {
         grid-column: auto;
         min-height: 400px;
-      }
+      } */
 
       .leader-modal {
         padding: 0;
@@ -1791,6 +1791,20 @@
         right: 14px;
         width: 58px;
         height: 58px;
+      }
+    }
+
+    /* NEW — only apply single column on small phones */
+    @media (max-width: 600px) {
+      .leaders-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .leader-card,
+      .leader-card:last-child {
+        grid-column: auto;
+        min-height: 380px;
       }
     }
 
