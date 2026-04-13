@@ -79,7 +79,9 @@
       max-width: 100vw;
     }
 
-    body.is-loading {
+    body.is-loading,
+    body.modal-open,
+    body.menu-open {
       overflow: hidden;
     }
 
@@ -433,289 +435,410 @@
       pointer-events: none;
     }
 
-    .apply-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 28px;
-      padding: 12px 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(231,195,121,0.6);
-      color: #f4d596;
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: all 0.25s ease;
-    }
-
-    .apply-btn:hover {
-      background: rgba(231,195,121,0.1);
-      border-color: rgba(231,195,121,0.9);
-      transform: translateY(-2px);
-    }
-
-    .vision-section {
-      position: relative;
-      min-height: 190vh;
-      padding: 0;
-      overflow: clip;
-      background: #081511;
-    }
-
-    .vision-panel {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      isolation: isolate;
-      background:
-        linear-gradient(180deg, rgba(7, 21, 17, 0.38) 0%, rgba(5, 18, 14, 0.72) 55%, rgba(4, 13, 11, 0.84) 100%),
-        url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1800&q=80') center center / cover no-repeat;
-      background-size: cover;
-      background-position: center center;
-      will-change: transform;
-    }
-
-    .vision-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 38%, rgba(231,195,121,0.12) 0%, rgba(231,195,121,0.06) 18%, rgba(231,195,121,0) 44%),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 28%, rgba(255,255,255,0) 52%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .vision-panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(8,24,19,0.15) 0%, rgba(8,24,19,0.28) 100%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .vision-inner {
-      position: relative;
-      z-index: 2;
-      width: min(1120px, calc(100% - 56px));
-      margin: 0 auto;
-      padding: 180px 0 120px;
-    }
-
-    .vision-kicker {
-      display: inline-block;
-      margin-bottom: 18px;
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(231,195,121,0.96);
-    }
-
-    .vision-copy {
-      max-width: 980px;
-    }
-
-    .vision-copy .word {
-      display: inline-block;
-      color: rgba(231, 195, 121, 0.2);
-      transition: color 0.2s linear;
-      will-change: color, opacity;
-    }
-
-    .vision-line {
-      display: block;
-      font-family: var(--font-serif);
-      font-weight: 500;
-      font-size: clamp(2rem, 3.2vw, 3.55rem);
-      line-height: 1;
-      letter-spacing: -0.03em;
-      color: rgba(231, 195, 121, 0.24);
-      text-wrap: balance;
-    }
-
-    .vision-line + .vision-line {
-      margin-top: 0.18em;
-    }
-
-    .mission-section {
-      padding-top: 120px;
-      padding-bottom: 140px;
-    }
-
-    .mission-header {
-      max-width: 1180px;
-      margin: 0 auto 30px;
-    }
-
-    .mission-header p {
-      max-width: 42rem;
-      margin-top: 14px;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: var(--text-light-soft);
-    }
-
-    .mission-stage {
-      max-width: 1180px;
-      margin: 0 auto;
-    }
-
-    .mission-canvas {
-      display: grid;
-      gap: var(--journey-card-gap);
-    }
-
-    .mission-card {
-      display: grid;
-      grid-template-columns: minmax(240px, 30%) minmax(0, 1fr);
-      border-radius: 18px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.04);
-      opacity: 0;
-      transform: translateY(46px);
-      will-change: transform, opacity;
-      align-items: stretch;
-    }
-
-    .mission-card-media {
-      position: relative;
-      background: #1b2d27;
-      overflow: hidden;
-      min-height: 100%;
-      height: 100%;
-    }
-
-    .mission-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .mission-card-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.22) 100%);
-      pointer-events: none;
-    }
-
-    .mission-card-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 28px 32px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.05) 100%);
-      height: 100%;
-      min-width: 0;
-    }
-
-    .mission-card-index {
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      margin-bottom: 14px;
-      background: rgba(231,195,121,0.18);
-      color: #d7b56b;
-      font-size: 0.76rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      flex-shrink: 0;
-    }
-
-    .mission-card-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.5rem, 2.4vw, 2.35rem);
-      line-height: 1.02;
-      color: var(--gold);
-      margin: 0;
-      width: 100%;
-      max-width: none;
-      text-wrap: balance;
-      font-weight: 500;
-    }
-
-    .values-section {
+    .careers-openings {
       padding-top: 0;
-      padding-bottom: 130px;
+      padding-bottom: 120px;
     }
 
-    .values-shell {
+    .careers-shell {
       max-width: 1180px;
       margin: 0 auto;
     }
 
-    .values-header {
+    .careers-intro {
       max-width: 760px;
       margin-bottom: 34px;
     }
 
-    .values-grid {
+    .careers-intro .section-text + .section-text {
+      margin-top: 16px;
+    }
+
+    .jobs-board {
+      border-top: 1px solid rgba(255,255,255,0.14);
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+      border-radius: 22px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .jobs-board-header,
+    .job-row {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 0;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      grid-template-columns: minmax(0, 2fr) minmax(120px, 0.9fr) minmax(120px, 0.8fr) auto;
+      gap: 18px;
+      align-items: center;
     }
 
-    .value-item {
-      position: relative;
-      min-height: 320px;
-      padding: 34px 26px 34px;
-      opacity: 0;
-      transform: translateY(38px);
-      will-change: transform, opacity;
+    .jobs-board-header {
+      padding: 18px 28px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.82);
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .value-item + .value-item {
-      border-left: 1px solid rgba(255,255,255,0.12);
+    .jobs-list {
+      display: grid;
     }
 
-    .value-icon {
-      width: 58px;
-      height: 58px;
+    .job-row {
+      width: 100%;
+      padding: 24px 28px;
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: white;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+    }
+
+    .job-row:last-child {
+      border-bottom: 0;
+    }
+
+    .job-row:hover,
+    .job-row:focus-visible {
+      background: rgba(255,255,255,0.05);
+      outline: none;
+    }
+
+    .job-row:focus-visible {
+      box-shadow: inset 0 0 0 1px rgba(231,195,121,0.55);
+    }
+
+    .job-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .job-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.35rem, 1.8vw, 1.8rem);
+      line-height: 1;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+    }
+
+    .job-summary {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+      max-width: 40rem;
+    }
+
+    .job-meta {
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.82);
+      font-family: var(--font-sans);
+    }
+
+    .job-arrow {
+      justify-self: end;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 42px;
-      color: rgba(231,195,121,0.96);
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(231,195,121,0.3);
+      color: var(--gold);
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+      font-size: 1rem;
     }
 
-    .value-icon svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.7;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .job-row:hover .job-arrow,
+    .job-row:focus-visible .job-arrow {
+      transform: translateX(6px);
+      border-color: rgba(231,195,121,0.7);
+      background: rgba(231,195,121,0.08);
     }
 
-    .value-title {
+    .job-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 220;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .job-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .job-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(4, 14, 11, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .job-modal-dialog {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, 100%);
+      max-height: min(88vh, 920px);
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at top left, rgba(231,195,121,0.08) 0%, rgba(231,195,121,0.03) 20%, rgba(231,195,121,0.00) 45%),
+        linear-gradient(180deg, rgba(10, 29, 22, 0.98) 0%, rgba(6, 20, 15, 0.98) 100%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(18px) scale(0.98);
+      transition: transform 0.3s ease;
+    }
+
+    .job-modal.is-open .job-modal-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .job-modal-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .job-modal-title-wrap {
+      min-width: 0;
+    }
+
+    .job-modal-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.82);
+    }
+
+    .job-modal-title {
       font-family: var(--font-serif);
-      font-size: clamp(1.7rem, 2.2vw, 2.35rem);
-      line-height: 0.98;
-      letter-spacing: -0.035em;
-      color: #f3d28d;
-      margin: 0 0 16px;
-      max-width: 11ch;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--gold);
+      margin: 0;
     }
 
-    .value-text {
-      font-size: 0.98rem;
-      line-height: 1.8;
+    .job-modal-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .job-lang-toggle {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .job-lang-btn,
+    .job-close-btn,
+    .job-apply-btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    .job-lang-btn {
+      min-width: 58px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(255,255,255,0.72);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .job-lang-btn.is-active {
+      background: rgba(231,195,121,0.14);
+      color: var(--gold);
+    }
+
+    .job-close-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.85);
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+
+    .job-close-btn:hover,
+    .job-close-btn:focus-visible {
+      background: rgba(255,255,255,0.09);
+      transform: rotate(90deg);
+      outline: none;
+    }
+
+    .job-modal-body {
+      overflow-y: auto;
+      padding: 24px 28px 30px;
+    }
+
+    .job-modal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .job-modal-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.86);
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
+    .job-modal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      gap: 28px;
+    }
+
+    .job-modal-copy {
       color: rgba(255,255,255,0.82);
-      max-width: 24rem;
+    }
+
+    .job-modal-copy h4 {
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.9);
+      margin: 0 0 12px;
+    }
+
+    .job-modal-copy p,
+    .job-modal-copy li {
+      font-size: 0.97rem;
+      line-height: 1.78;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .job-modal-copy p + p,
+    .job-modal-copy ul + h4,
+    .job-modal-copy p + h4 {
+      margin-top: 22px;
+    }
+
+    .job-modal-copy ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .job-modal-copy ul > li > b {
+      display: block;
+      margin-top: 10px;
+      font-size: 1rem;
+      /* color: #e7c379; */
+    }
+
+    .job-modal-side {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      align-self: start;
+    }
+
+    .job-modal-side h4 {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(231,195,121,0.9);
+      margin: 0 0 14px;
+    }
+
+    .job-side-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin: 0 0 26px;
+      padding: 0;
+    }
+
+    .job-side-list li {
+      display: grid;
+      gap: 5px;
+    }
+
+    .job-side-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.48);
+    }
+
+    .job-side-value {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.86);
+    }
+
+    .job-apply-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: rgba(231,195,121,0.14);
+      border: 1px solid rgba(231,195,121,0.5);
+      color: #f4d596;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .job-apply-btn:hover,
+    .job-apply-btn:focus-visible {
+      transform: translateY(-2px);
+      background: rgba(231,195,121,0.2);
+      border-color: rgba(231,195,121,0.85);
+      outline: none;
     }
 
     .reveal-footer {
@@ -733,9 +856,6 @@
       content: "";
       position: absolute;
       inset: 0;
-      /* background:
-        radial-gradient(circle at 50% 20%, rgba(231,195,121,0.18) 0%, rgba(231,195,121,0.06) 24%, rgba(231,195,121,0) 54%),
-        linear-gradient(180deg, rgba(9, 27, 22, 0.18) 0%, rgba(7, 19, 16, 0.72) 100%); */
       pointer-events: none;
     }
 
@@ -766,15 +886,6 @@
       align-items: end;
     }
 
-    .reveal-footer-kicker {
-      display: inline-block;
-      margin-bottom: 18px;
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(231,195,121,0.92);
-    }
-
     .reveal-footer-title {
       font-family: var(--font-serif);
       font-size: clamp(2.6rem, 5vw, 5rem);
@@ -785,13 +896,6 @@
       max-width: 7.5em;
     }
 
-    .reveal-footer-copy {
-      max-width: 32rem;
-      font-size: 1rem;
-      line-height: 1.72;
-      color: rgba(255,255,255,0.82);
-    }
-
     .reveal-footer-heading {
       font-size: 0.78rem;
       letter-spacing: 0.16em;
@@ -800,32 +904,16 @@
       margin-bottom: 16px;
     }
 
-    .reveal-footer-links,
     .reveal-footer-contact {
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .reveal-footer-links li,
     .reveal-footer-contact li {
       margin-bottom: 12px;
       color: rgba(255,255,255,0.78);
       font-size: 0.8rem;
-    }
-
-    .reveal-footer-links a,
-    .reveal-footer-contact a {
-      color: inherit;
-      text-decoration: none;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      display: inline-block;
-    }
-
-    .reveal-footer-links a:hover,
-    .reveal-footer-contact a:hover {
-      opacity: 0.7;
-      transform: translateX(3px);
     }
 
     .reveal-footer-bottom {
@@ -1010,10 +1098,6 @@
     .mega-menu-close span:nth-child(1) { transform: rotate(45deg); }
     .mega-menu-close span:nth-child(2) { transform: rotate(-45deg); }
 
-    body.menu-open {
-      overflow: hidden;
-    }
-
     body.menu-open .mega-menu {
       pointer-events: auto;
     }
@@ -1045,27 +1129,6 @@
         min-height: 460px;
       }
 
-      .vision-section {
-        min-height: 170vh;
-      }
-
-      .mission-card {
-        grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
-      }
-
-      .values-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .value-item:nth-child(3),
-      .value-item:nth-child(4) {
-        border-top: 1px solid rgba(255,255,255,0.12);
-      }
-
-      .value-item:nth-child(3) {
-        border-left: none;
-      }
-
       .reveal-footer-grid {
         grid-template-columns: 1fr;
         gap: 22px;
@@ -1090,6 +1153,10 @@
       .mega-menu-card {
         max-height: 240px;
       }
+
+      .job-modal-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 900px) {
@@ -1107,26 +1174,17 @@
         padding-right: 20px;
       }
 
-      .hero-about-inner,
-      .vision-inner {
+      .hero-about-inner {
         width: min(calc(100vw - 40px), 100%);
-      }
-
-      .mission-card {
-        grid-template-columns: 1fr;
-      }
-
-      .mission-card-media {
-        min-height: 240px;
-        aspect-ratio: 16 / 10;
-      }
-
-      .mission-card-copy {
-        padding: 24px 22px 26px;
       }
 
       .reveal-footer-bottom {
         flex-direction: column;
+      }
+
+      .jobs-board-header,
+      .job-row {
+        grid-template-columns: minmax(0, 1.7fr) minmax(100px, 0.8fr) minmax(100px, 0.8fr) auto;
       }
     }
 
@@ -1188,59 +1246,74 @@
         min-height: 360px;
       }
 
-      .vision-section {
-        min-height: 100svh;
+      .careers-openings {
+        padding-bottom: 90px;
       }
 
-      .vision-panel {
-        min-height: 100svh;
-      }
-
-      .vision-inner {
-        width: min(calc(100vw - 32px), 100%);
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 120px 0 72px;
-      }
-
-      .vision-line {
-        font-size: clamp(1.9rem, 8vw, 2.7rem);
-        line-height: 1.08;
-      }
-
-      .mission-section {
-        padding-top: 92px;
-        padding-bottom: 100px;
-      }
-
-      .mission-canvas {
-        gap: 18px;
-      }
-
-      .mission-card {
+      .jobs-board {
         border-radius: 18px;
       }
 
-      .mission-card-media {
-        min-height: 220px;
+      .jobs-board-header {
+        display: none;
       }
 
-      .mission-card-title {
-        font-size: clamp(1.35rem, 5.2vw, 1.9rem);
-        line-height: 1.08;
+
+      .job-row {
+        grid-template-columns: auto auto 1fr auto;
+        gap: 10px;
+        padding: 20px 18px;
+        align-items: center;
       }
 
-      .value-item {
-        min-height: 260px;
-        padding: 28px 22px 26px;
+      .job-title-wrap {
+        grid-column: 1 / -1;
       }
 
-      .value-icon {
-        width: 52px;
-        height: 52px;
-        margin-bottom: 28px;
+      .job-row > .job-meta:nth-of-type(1) {
+        grid-column: 1;
+      }
+
+      .job-row > .job-meta:nth-of-type(2) {
+        grid-column: 2;
+      }
+
+      .job-arrow {
+        grid-column: 4;
+        justify-self: end;
+      }
+
+      .job-meta-inline {
+        display: block;
+      }
+
+      .job-meta-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .job-modal {
+        padding: 16px;
+      }
+
+      .job-modal-dialog {
+        max-height: 92vh;
+        border-radius: 20px;
+      }
+
+      .job-modal-top {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .job-modal-controls {
+        justify-content: space-between;
       }
 
       .reveal-footer-inner {
@@ -1338,81 +1411,18 @@
       }
 
       .section-text,
-      .mission-header p,
-      .hero-tagline,
-      .value-text,
-      .reveal-footer-copy {
+      .hero-tagline {
         font-size: 0.95rem;
       }
 
-
-      .vision-section {
-        min-height: 100svh;
+      .job-modal-top,
+      .job-modal-body {
+        padding-left: 18px;
+        padding-right: 18px;
       }
 
-      .vision-inner {
-        min-height: 100svh;
-        padding: 108px 0 56px;
-      }
-
-      .vision-line {
-        font-size: clamp(1.45rem, 8vw, 2rem);
-        line-height: 1.14;
-      }
-
-      .mission-card {
-        border-radius: 18px;
-      }
-
-      .mission-card-media {
-        min-height: 190px;
-        aspect-ratio: 16 / 10;
-      }
-
-      .mission-card-copy {
-        padding: 18px 16px 20px;
-      }
-
-      .mission-card-index {
-        width: 32px;
-        height: 32px;
-        margin-bottom: 10px;
-        font-size: 0.68rem;
-      }
-
-      .mission-card-title {
-        font-size: clamp(1.15rem, 5.6vw, 1.45rem);
-        line-height: 1.12;
-      }
-
-      .values-section {
-        padding-bottom: 100px;
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .value-item {
-        min-height: 0;
-        padding: 24px 18px 22px;
-      }
-
-      .value-item + .value-item,
-      .value-item:nth-child(3),
-      .value-item:nth-child(4) {
-        border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.12);
-      }
-
-      .value-icon {
-        width: 48px;
-        height: 48px;
-        margin-bottom: 24px;
-      }
-
-      .value-title {
-        max-width: none;
+      .job-modal-side {
+        padding: 18px;
       }
 
       .reveal-footer {
@@ -1439,16 +1449,13 @@
         font-size: clamp(2.35rem, 12vw, 3.2rem);
       }
 
-      .vision-line {
-        font-size: 1.32rem;
+      .job-modal-title {
+        font-size: clamp(1.7rem, 9vw, 2.4rem);
       }
 
-      .mission-card-media {
-        min-height: 170px;
-      }
-
-      .mission-card-title {
-        font-size: 1.08rem;
+      .job-lang-btn {
+        min-width: 50px;
+        padding: 8px 10px;
       }
     }
   </style>
@@ -1506,26 +1513,49 @@
           <p class="section-text">
             We keep things simple and focused. People are trusted to take ownership, think clearly, and do good work without unnecessary layers or noise. If you want to be in an environment where your ideas are valued and your contributions have real weight, this is a place where you can grow and make a difference.
           </p>
-          <!-- <a href="#" class="apply-btn">
-            Apply now
-          </a> -->
         </div>
       </div>
     </section>
 
+    <section class="section-dark careers-openings" aria-labelledby="openPositionsTitle">
+      <div class="careers-shell">
+        <div class="careers-intro">
+          <span class="section-kicker">Open Positions</span>
+          <h2 class="section-title" id="openPositionsTitle">Current opportunities</h2>
+          <p class="section-text">
+            Explore roles across design, development, and project delivery. Each listing opens into a detailed bilingual modal so visitors can switch between English and Vietnamese without leaving the page.
+          </p>
+        </div>
 
+        <div class="jobs-board">
+          <div class="jobs-board-header" aria-hidden="true">
+            <div>Role</div>
+            <div>Location</div>
+            <div>Type</div>
+            <div></div>
+          </div>
+
+          <div class="jobs-list">
+            <button class="job-row" type="button" data-job-id="project-manager">
+              <div class="job-title-wrap">
+                <div class="job-title">(Senior) Manager, Investment & Asset Management</div>
+                <!-- <div class="job-summary">Drive timelines, coordination, and delivery across active developments and strategic stakeholders.</div> -->
+              </div>
+              <div class="job-meta job-meta-inline"><span class="job-meta-pill">Ho Chi Minh City</span></div>
+              <div class="job-meta job-meta-inline"><span class="job-meta-pill">Full-Time</span></div>
+              <span class="job-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="reveal-footer" id="contact">
     <div class="reveal-footer-inner">
       <div class="reveal-footer-grid">
         <div>
-          <!-- <span class="reveal-footer-kicker">Get in touch</span> -->
           <h2 class="reveal-footer-title">Spaces for the next era of urban living</h2>
-          <!-- <p class="reveal-footer-copy">
-            From residential to hospitality and commercial destinations, Vanté creates developments
-            shaped by place, refinement, and long-term value.
-          </p> -->
         </div>
 
         <div>
@@ -1549,7 +1579,6 @@
 
       <div class="reveal-footer-bottom">
         <span>© 2026 Vanté. All rights reserved.</span>
-        <!-- <span>Privacy Policy</span> -->
       </div>
     </div>
   </footer>
@@ -1588,8 +1617,227 @@
     </div>
   </div>
 
+  <div class="job-modal" id="jobModal" aria-hidden="true">
+    <div class="job-modal-backdrop" data-close-modal></div>
+    <div class="job-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
+      <div class="job-modal-top">
+        <div class="job-modal-title-wrap">
+          <span class="job-modal-kicker" id="jobModalKicker"></span>
+          <h3 class="job-modal-title" id="jobModalTitle"></h3>
+        </div>
+
+        <div class="job-modal-controls">
+          <div class="job-lang-toggle" aria-label="Select language">
+            <button class="job-lang-btn is-active" type="button" data-lang="en">EN</button>
+            <button class="job-lang-btn" type="button" data-lang="vi">VN</button>
+          </div>
+          <button class="job-close-btn" type="button" id="jobModalClose" aria-label="Close job details">×</button>
+        </div>
+      </div>
+
+      <div class="job-modal-body">
+        <div class="job-modal-meta">
+          <div class="job-modal-chip" id="jobMetaLocation"></div>
+          <div class="job-modal-chip" id="jobMetaType"></div>
+          <div class="job-modal-chip" id="jobMetaDepartment"></div>
+        </div>
+
+        <div class="job-modal-grid">
+          <div class="job-modal-copy" id="jobModalCopy"></div>
+
+          <aside class="job-modal-side">
+            <h4 id="jobSideHeading">Quick overview</h4>
+            <ul class="job-side-list">
+              <li>
+                <span class="job-side-label" id="labelLocation">Location</span>
+                <span class="job-side-value" id="sideLocation">Singapore</span>
+              </li>
+              <li>
+                <span class="job-side-label" id="labelType">Employment Type</span>
+                <span class="job-side-value" id="sideType">Full-Time</span>
+              </li>
+              <li>
+                <span class="job-side-label" id="labelDepartment">Department</span>
+                <span class="job-side-value" id="sideDepartment">Design</span>
+              </li>
+              <li>
+                <span class="job-side-label" id="labelExperience">Experience</span>
+                <span class="job-side-value" id="sideExperience">6+ years</span>
+              </li>
+            </ul>
+
+            <a class="job-apply-btn" id="jobApplyButton" href="contact.html">Apply Now</a>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     gsap.registerPlugin(ScrollTrigger);
+
+    const jobData = {
+      'project-manager': {
+        en: {
+          kicker: 'Position details',
+          title: '(Senior) Manager, Investment & Asset Management',
+          location: 'Ho Chi Minh City, Vietnam',
+          type: 'Full-Time',
+          department: 'Investment & Asset Management',
+          // experience: '5+ years',
+          sideHeading: 'Quick overview',
+          labelLocation: 'Location',
+          labelType: 'Employment Type',
+          labelDepartment: 'Department',
+          // labelExperience: 'Experience',
+          applyLabel: 'Apply Now',
+          body: `
+            <h4>Overview</h4>
+            <p>The (Senior) Manager, Investment & Asset Management is responsible for leading investment analysis, asset performance optimization, and portfolio value enhancement across Vante’s real estate projects. This role ensures disciplined capital deployment, maximized returns, and long-term asset sustainability through strategic planning, financial modeling, market analysis, and operational performance management. </p>
+
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li><b>Investment Strategy & Analysis</b>
+                <ul>
+                  <li>Identify, evaluate, and structure real estate investment opportunities (residential, commercial, mixed-use, hospitality, land bank)</li>
+                  <li>Develop financial models including IRR, NPV, cash flow projections, sensitivity and scenario analysis</li>
+                  <li>Conduct feasibility studies, market research, and investment risk assessments</li>
+                  <li>Prepare investment proposals and presentation decks for Management and Board approval</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Asset Management & Value Enhancement</b>
+                <ul>
+                  <li>Monitor asset performance against business plans, budgets, and return targets</li>
+                  <li>Develop and implement asset enhancement strategies to improve occupancy, revenue, and valuation</li>
+                  <li>Oversee leasing strategy, tenant mix optimization, and operating cost efficiency</li>
+                  <li>Drive repositioning, refurbishment, and redevelopment initiatives where applicable</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Financial Performance & Reporting</b>
+                <ul>
+                  <li>Prepare periodic asset performance reports including ROI, yield, NOI, and variance analysis</li>
+                  <li>Work closely with Finance on budgeting, forecasting, and capital expenditure planning</li>
+                  <li>Track investment returns and ensure alignment with corporate financial objectives</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Stakeholder & Partner Management</b>
+                <ul>
+                  <li>Coordinate with developers, operators, brokers, consultants, and legal advisors</li>
+                  <li>Negotiate commercial terms for acquisitions, disposals, leasing, and joint ventures</li>
+                  <li>Represent the Company in investment discussions and strategic partnerships</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Risk Management & Governance</b>
+                <ul>
+                  <li>Identify investment, operational, and market risks and implement mitigation strategies</li>
+                  <li>Ensure compliance with internal governance, financial controls, and regulatory requirements</li>
+                  <li>Support due diligence processes for acquisitions and divestments</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Bachelor’s degree in Finance, Real Estate, Economics, Business or related fields</li>
+              <li>8–12+ years of experience in real estate investment, asset management, or financial advisory</li>
+              <li>Strong financial modeling and valuation expertise</li>
+              <li>Solid understanding of Vietnam real estate market and investment structures</li>
+              <li>Excellent analytical, negotiation, and presentation skills</li>
+              <li>Proficiency in Excel, PowerPoint, and financial analysis tools</li>
+            </ul>
+          `
+        },
+        vi: {
+          kicker: 'Chi tiết vị trí',
+          title: 'Quản lý (Cấp Cao), Đầu Tư & Quản Lý Tài Sản',
+          location: 'Thành phố Hồ Chí Minh',
+          type: 'Toàn thời gian',
+          department: 'Bộ Phận Đầu Tư & Quản Lý Tài Sản',
+          // experience: 'Trên 5 năm',
+          sideHeading: 'Tóm tắt nhanh',
+          labelLocation: 'Địa điểm',
+          labelType: 'Hình thức làm việc',
+          labelDepartment: 'Phòng ban',
+          // labelExperience: 'Kinh nghiệm',
+          applyLabel: 'Ứng tuyển ngay',
+          body: `
+            <h4>Tổng quan Vị trí</h4>
+            <p>Quản lý (Cấp Cao), Đầu tư & Quản lý Tài sản chịu trách nhiệm phân tích đầu tư, tối ưu hiệu quả tài sản và gia tăng giá trị danh mục bất động sản của Vante. Vị trí này đảm bảo sử dụng vốn hiệu quả, tối đa hóa lợi nhuận và phát triển tài sản bền vững thông qua chiến lược đầu tư, mô hình tài chính, nghiên cứu thị trường và quản trị hiệu suất vận hành.</p>
+
+            <h4>Trách Nhiệm Chính</h4>
+            <ul>
+              <li><b>Chiến lược & Phân tích đầu tư</b>
+                <ul>
+                  <li>Tìm kiếm, đánh giá và cấu trúc các cơ hội đầu tư bất động sản (nhà ở, thương mại, phức hợp, nghỉ dưỡng, quỹ đất)</li>
+                  <li>Xây dựng mô hình tài chính: IRR, NPV, dòng tiền, phân tích độ nhạy và kịch bản</li>
+                  <li>Thực hiện nghiên cứu thị trường, phân tích khả thi và rủi ro đầu tư</li>
+                  <li>Lập hồ sơ đầu tư và trình bày cho Ban Điều hành/HĐQT phê duyệt</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Quản lý tài sản & Gia tăng giá trị</b>
+                <ul>
+                  <li>Theo dõi hiệu quả tài sản so với kế hoạch kinh doanh, ngân sách và mục tiêu lợi nhuận</li>
+                  <li>Triển khai chiến lược gia tăng giá trị: nâng cao tỷ lệ lấp đầy, doanh thu và giá trị tài sản</li>
+                  <li>Quản lý chiến lược cho thuê, cơ cấu khách thuê và kiểm soát chi phí vận hành</li>
+                  <li>Thực hiện tái cấu trúc, cải tạo, nâng cấp hoặc tái phát triển tài sản khi cần thiết</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Hiệu quả tài chính & Báo cáo</b>
+                <ul>
+                  <li>Lập báo cáo định kỳ về hiệu quả tài sản: ROI, lợi suất, NOI, chênh lệch ngân sách</li>
+                  <li>Phối hợp với Phòng Tài chính lập ngân sách, dự báo và kế hoạch CAPEX</li>
+                  <li>Theo dõi lợi nhuận đầu tư và đảm bảo phù hợp mục tiêu tài chính công ty</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Quản lý đối tác & bên liên quan</b>
+                <ul>
+                  <li>Làm việc với chủ đầu tư, đơn vị vận hành, môi giới, tư vấn và pháp lý</li>
+                  <li>Đàm phán các điều khoản thương mại trong mua bán, cho thuê và hợp tác đầu tư</li>
+                  <li>Đại diện Công ty trong các thương vụ và quan hệ đối tác chiến lược</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li><b>Quản trị rủi ro & tuân thủ</b>
+                <ul>
+                  <li>Nhận diện rủi ro đầu tư, vận hành và thị trường; đề xuất biện pháp kiểm soát</li>
+                  <li>Đảm bảo tuân thủ quy trình quản trị nội bộ và quy định pháp luật</li>
+                  <li>Tham gia quy trình thẩm định dự án mua/bán tài sản</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h4>Tiêu chuẩn Năng lực – Kinh nghiệm</h4>
+            <ul>
+              <li>Tốt nghiệp Đại học chuyên ngành Tài chính, Bất động sản, Kinh tế, Quản trị Kinh doanh</li>
+              <li>8–12+ năm kinh nghiệm trong đầu tư bất động sản, quản lý tài sản hoặc tư vấn tài chính</li>
+              <li>Thành thạo mô hình tài chính và định giá dự án</li>
+              <li>Am hiểu thị trường bất động sản Việt Nam và cấu trúc đầu tư</li>
+              <li>Kỹ năng phân tích, đàm phán và thuyết trình xuất sắc</li>
+              <li>Sử dụng tốt Excel, PowerPoint và công cụ phân tích tài chính</li>
+            </ul>
+          `
+        }
+      }
+    };
+
+    let currentJobId = 'senior-architect';
+    let currentLang = 'en';
+    let previousFocusedElement = null;
 
     function setupTopbarBehavior() {
       const topbar = document.getElementById('topbar');
@@ -1634,149 +1882,17 @@
           once: true
         }
       });
-    }
 
-    function setupVisionReveal() {
-      const visionSection = document.querySelector('.vision-section');
-      const visionPanel = document.querySelector('.vision-panel');
-      const words = gsap.utils.toArray('#visionCopy .word');
-
-      if (!visionSection || !visionPanel || !words.length) return;
-
-      gsap.set(words, {
-        opacity: 1,
-        color: 'rgba(231,195,121,0.20)'
-      });
-
-      ScrollTrigger.matchMedia({
-        "(min-width: 769px)": function () {
-          const revealTl = gsap.timeline({
-            defaults: { ease: 'none' },
-            scrollTrigger: {
-              trigger: visionSection,
-              start: 'top top',
-              end: '+=135%',
-              scrub: 1,
-              pin: visionPanel,
-              anticipatePin: 1,
-              invalidateOnRefresh: true
-            }
-          });
-
-          revealTl.to(words, {
-            color: 'rgba(255,255,255,0.98)',
-            stagger: 0.11,
-            duration: 1.15
-          });
-
-          gsap.fromTo(visionPanel,
-            { backgroundSize: '108%' },
-            {
-              backgroundSize: '100%',
-              ease: 'none',
-              scrollTrigger: {
-                trigger: visionSection,
-                start: 'top top',
-                end: '+=135%',
-                scrub: true,
-                invalidateOnRefresh: true
-              }
-            }
-          );
-        },
-
-        "(max-width: 768px)": function () {
-          gsap.to(words, {
-            color: 'rgba(255,255,255,0.98)',
-            stagger: 0.12,
-            duration: 1.2,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: visionSection,
-              start: 'top 75%',
-              end: 'bottom 30%',
-              scrub: 0.9,
-              invalidateOnRefresh: true
-            }
-          });
-
-          gsap.fromTo(visionPanel,
-            { backgroundSize: '106%' },
-            {
-              backgroundSize: '100%',
-              ease: 'none',
-              scrollTrigger: {
-                trigger: visionSection,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true,
-                invalidateOnRefresh: true
-              }
-            }
-          );
+      gsap.from('.jobs-board', {
+        y: 36,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.jobs-board',
+          start: 'top 84%',
+          once: true
         }
-      });
-    }
-
-    function syncMissionCardHeights() {
-      const cards = gsap.utils.toArray('.mission-card');
-      if (!cards.length) return;
-
-      cards.forEach(card => {
-        card.style.minHeight = '';
-      });
-
-      if (window.innerWidth <= 900) return;
-
-      let maxHeight = 0;
-      cards.forEach(card => {
-        maxHeight = Math.max(maxHeight, card.offsetHeight);
-      });
-
-      cards.forEach(card => {
-        card.style.minHeight = maxHeight + 'px';
-      });
-    }
-
-    function setupMissionCards() {
-      const cards = gsap.utils.toArray('.mission-card');
-      if (!cards.length) return;
-
-      syncMissionCardHeights();
-
-      cards.forEach((card) => {
-        gsap.to(card, {
-          y: 0,
-          opacity: 1,
-          duration: 1.35,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 84%',
-            toggleActions: 'play none none none',
-            once: true
-          }
-        });
-      });
-    }
-
-    function setupValueCards() {
-      const items = gsap.utils.toArray('.value-item');
-      if (!items.length) return;
-
-      items.forEach((item) => {
-        gsap.to(item, {
-          y: 0,
-          opacity: 1,
-          duration: 1.4,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 86%',
-            toggleActions: 'play none none none',
-            once: true
-          }
-        });
       });
     }
 
@@ -1818,20 +1934,104 @@
       });
 
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeMenu();
+        if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+          closeMenu();
+        }
+      });
+    }
+
+    function renderJobModal() {
+      const job = jobData[currentJobId] && jobData[currentJobId][currentLang];
+      if (!job) return;
+
+      document.getElementById('jobModalKicker').textContent = job.kicker;
+      document.getElementById('jobModalTitle').textContent = job.title;
+      document.getElementById('jobMetaLocation').textContent = job.location;
+      document.getElementById('jobMetaType').textContent = job.type;
+      document.getElementById('jobMetaDepartment').textContent = job.department;
+      document.getElementById('jobModalCopy').innerHTML = job.body;
+      document.getElementById('jobSideHeading').textContent = job.sideHeading;
+      document.getElementById('labelLocation').textContent = job.labelLocation;
+      document.getElementById('labelType').textContent = job.labelType;
+      document.getElementById('labelDepartment').textContent = job.labelDepartment;
+      document.getElementById('labelExperience').textContent = job.labelExperience;
+      document.getElementById('sideLocation').textContent = job.location;
+      document.getElementById('sideType').textContent = job.type;
+      document.getElementById('sideDepartment').textContent = job.department;
+      document.getElementById('sideExperience').textContent = job.experience;
+      document.getElementById('jobApplyButton').textContent = job.applyLabel;
+
+      document.querySelectorAll('.job-lang-btn').forEach((btn) => {
+        btn.classList.toggle('is-active', btn.dataset.lang === currentLang);
+      });
+    }
+
+    function openJobModal(jobId) {
+      const modal = document.getElementById('jobModal');
+      if (!modal || !jobData[jobId]) return;
+
+      previousFocusedElement = document.activeElement;
+      currentJobId = jobId;
+      currentLang = 'en';
+      renderJobModal();
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      document.getElementById('jobModalClose').focus();
+    }
+
+    function closeJobModal() {
+      const modal = document.getElementById('jobModal');
+      if (!modal) return;
+
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+
+      if (previousFocusedElement && typeof previousFocusedElement.focus === 'function') {
+        previousFocusedElement.focus();
+      }
+    }
+
+    function setupJobBoard() {
+      document.querySelectorAll('.job-row').forEach((row) => {
+        row.addEventListener('click', () => openJobModal(row.dataset.jobId));
+      });
+
+      document.querySelectorAll('.job-lang-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentLang = btn.dataset.lang;
+          renderJobModal();
+        });
+      });
+
+      const modal = document.getElementById('jobModal');
+      const closeBtn = document.getElementById('jobModalClose');
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeJobModal);
+      }
+
+      if (modal) {
+        modal.querySelectorAll('[data-close-modal]').forEach((el) => {
+          el.addEventListener('click', closeJobModal);
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) {
+          closeJobModal();
+        }
       });
     }
 
     function initPage() {
       setupTopbarBehavior();
       setupHeroIntroAnimation();
-      setupVisionReveal();
-      setupMissionCards();
-      setupValueCards();
       setupMenu();
+      setupJobBoard();
 
       requestAnimationFrame(() => {
-        syncMissionCardHeights();
         document.body.classList.remove('is-loading');
         document.body.classList.add('page-ready');
         ScrollTrigger.refresh();
@@ -1844,7 +2044,6 @@
     function handleResponsiveRefresh() {
       clearTimeout(resizeTimeout);
       resizeTimeout = setTimeout(() => {
-        syncMissionCardHeights();
         ScrollTrigger.refresh();
       }, 220);
     }
